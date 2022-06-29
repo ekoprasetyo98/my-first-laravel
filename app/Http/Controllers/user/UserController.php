@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function index(){
-        $data = DB::table('mahasiswa')->get();
+        $data = DB::table('mahasiswa')->paginate(10);
         return view('user/index',['dataMahasiswa'=>$data]);
     }
 
@@ -47,5 +47,12 @@ class UserController extends Controller
     public function delete($id){
         DB::table('mahasiswa')->where('id',$id)->delete();
         return redirect('/content/data');
+    }
+
+    public function cari(Request $request){
+        $cari = $request->cari;
+        $data = DB::table('mahasiswa')->where('nama','like',"%".$cari."%")->paginate();
+
+        return view('/user/index',['dataMahasiswa'=>$data]);
     }
 }

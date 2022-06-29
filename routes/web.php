@@ -25,5 +25,6 @@ Route::get('/user/halaman-edit/{id}','user\UserController@update');
 Route::post('/user/updateData/proses','user\UserController@actUpdate');
 Route::get('/user/delete/{id}','user\UserController@delete');
 Route::get('/user/halaman-detail/{id}','user\UserController@detail');
+Route::get('/user/find','user\UserController@cari');
 
 
